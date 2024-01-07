@@ -5,9 +5,9 @@ args = sys.argv
 
 if __name__ == "__main__":
     if number == 0:
-        print(f"{number} argument.")
+        print(f"{number} arguments.")
     elif number == 1:
-        print(f"{number} arguments:")
+        print(f"{number} argument:")
     else:
         print(f"{number} arguments:")
 
