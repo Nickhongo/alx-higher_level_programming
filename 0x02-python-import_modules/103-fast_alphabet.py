@@ -1,3 +1,3 @@
 #!/usr/bin/python3
-import string
-print(''.join(list(string.ascii_uppercase)), end='\n')
+alph = __import__('string').ascii_uppercase
+print(alph)
