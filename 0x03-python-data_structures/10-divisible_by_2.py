@@ -1,10 +1,5 @@
 def divisible_by_2(my_list=[]):
-    result = []
-
-    for num in my_list:
-        is_divisible = num % 2 == 0
-
-        result.append(is_divisible)
-
-    return result
-
+    if not len(my_list):
+        return my_list
+    my_list = [False if num % 2 else True for num in my_list]
+    return my_list
