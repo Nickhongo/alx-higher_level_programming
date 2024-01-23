@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 
-"""Define a class square"""
+"""Define a class Square"""
 
 class Square:
-    """reps a square"""
+    """Reps a square"""
 
     def __init__(self, size):
-        """initiates values to the passed object
+        """Initiates values to the passed object
 
         Args:
             size: Length of the square
