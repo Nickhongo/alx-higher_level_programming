@@ -1,5 +1,6 @@
 #!/usr/bin/python3
-"""Module contains a class that defines a square"""
+
+"""Define a class square"""
 
 class Square:
     """reps a square"""
