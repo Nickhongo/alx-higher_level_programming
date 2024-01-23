@@ -1,8 +1,9 @@
 #!/usr/bin/python3
-"""Module contains a class that defines a square"""
+
+"""Defines a square"""
 
 class Square:
-    """defines a square"""
+    """reps a square"""
 
     def __init__(self, size=0):
         """initializes instance attributes for instances of a square
