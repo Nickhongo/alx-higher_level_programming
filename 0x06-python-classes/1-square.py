@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-""" Module contains a class that defines a square"""
+"""Module contains a class that defines a square"""
 
 class Square:
-    """ Defines a square """
+    """reps a square"""
 
     def __init__(self, size):
         """initiates values to the passed object
