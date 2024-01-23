@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""This module contains a file that defines a square"""
+
+"""Defines a class square"""
+
+
 class Square:
-    """Defines a square"""
+    """reps a square"""
     pass
