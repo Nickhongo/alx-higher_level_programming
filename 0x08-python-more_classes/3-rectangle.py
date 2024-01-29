@@ -20,7 +20,7 @@ class Rectangle:
             raise ValueError("height must be >= 0")
 
     def __str__(self):
-        if self.__width == 0 or self__height == 0:
+        if self.__width == 0 or self.__height == 0:
             return ''
         return '\n'.join(self.__width * '#' for n in range(self.__height))
 
