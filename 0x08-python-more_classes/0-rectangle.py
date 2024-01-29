@@ -2,6 +2,7 @@
 
 """Defines a class Rectangle"""
 
+
 class Rectangle:
 
     """reps an empty class Rectangle"""
