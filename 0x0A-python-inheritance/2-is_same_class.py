@@ -5,7 +5,7 @@ def is_same_class(obj, a_class):
 
     Args:
     obj: Object to be checked
-    Cclass: class specified
+    a_class: class specified
 
     Returns:
     True or False
