@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-def is_same_class(obj, Cclass):
+def is_same_class(obj, a_class):
     """
     Checks if object is an instance of the specifiied class
 
@@ -10,4 +10,4 @@ def is_same_class(obj, Cclass):
     Returns:
     True or False
     """
-    return type(obj) is Cclass
+    return type(obj) is a_class
