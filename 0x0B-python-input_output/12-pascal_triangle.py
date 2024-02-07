@@ -1,4 +1,4 @@
-#!/usr/bin/pthon3
+#!/usr/bin/python3
 """
 define pascal triangle
 """
