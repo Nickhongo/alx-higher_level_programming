@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+import json
+"""
+
+
 import json
 """
 converts an object (in this case, a string) into its JSON representation
