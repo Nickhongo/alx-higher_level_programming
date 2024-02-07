@@ -4,6 +4,8 @@ This module contains the following function:
         MyList: defines a class that inherits from a list
 
 """
+
+
 def MyList(list):
     """
      defines a class that inherits from a list
