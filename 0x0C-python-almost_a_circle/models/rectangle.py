@@ -54,7 +54,7 @@ class Rectangle(Base):
         """Setter method for x."""
         if not isinstance(value, int):
             raise TypeError("x must be an integer")
-        if valuue < 0:
+        if value < 0:
             raise ValueError("x must be >= 0")
         self.__x = value
 
