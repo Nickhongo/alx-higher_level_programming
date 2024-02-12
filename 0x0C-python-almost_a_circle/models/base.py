@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Defines the Base class."""
 
+
 class Base:
     """Base class used to manage id atrr"""
 
@@ -14,4 +15,3 @@ class Base:
         else:
             Base.__nb_objects += 1
             self.id = Base.__nb_objects
-
