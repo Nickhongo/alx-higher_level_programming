@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 import json
-
+import csv
+from pathlib import Path
 """Base class"""
 
 
@@ -49,34 +50,126 @@ class Base:
 
         filename = cls.__name__ + ".json"
 
-        with open(filename, "w") as file:
+        with open(filename, 'w') as file:
             json_string = cls.to_json_string(
                     [obj.to_dictionary()for obj in list_objs])
             file.write(json_string)
 
     @classmethod
     def create(cls, **dictionary):
-        """Create an instance with all attributes"""
-        if cls.__name__ == "Rectangle":
-            dummy = cls(1, 1)
-        elif cls.__name__ == "Square":
-            dummy = cls(1)
-        else:
-            raise TypeError("create method is not defined for this class")
+        """
+        Returns an instance with all the attributes already set
+        """
 
-        dummy.update(**dictionary)
-        return dummy
+        if cls.__name__ == "Rectangle":
+            dummy = cls(10, 5)
+            dummy.update(**dictionary)
+            return dummy
+        elif cls.__name__ == "Square":
+            dummy = cls(10)
+            dummy.update(**dictionary)
+            return dummy
 
     @classmethod
     def load_from_file(cls):
-        """Return a list of instances from file"""
+        """
+        Returns a list of instances from a json file
+        """
         filename = cls.__name__ + ".json"
+        path_to_file = Path(filename)
 
-        try:
-            with open(filename, 'r') as file:
-                json_string = file.read()
-        except FileNotFoundError:
+        if not path_to_file.exists():
             return []
 
-        list_dicts = cls.from_json_string(json_string)
-        return [cls.create(**d) for d in list_dicts]
+        output = []
+        with open(filename, "r") as file:
+            instances = file.read()
+
+            list_instances = cls.from_json_string(instances)
+            for inst in list_instances:
+                inst_details = cls.create(**inst)
+                output.append(str(inst_details))
+        return output
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        Writes to a CSV file
+        """
+        if isinstance(list_objs, (list,)):
+            for _ in list_objs:
+                if not isinstance(_, Base):
+                    raise TypeError(
+                        "list_objs must be a list of instances that" +
+                        " inherits from Base or None"
+                    )
+        else:
+            raise TypeError(
+                "list_objs must be a list of instances that" +
+                " inherits from Base or None"
+            )
+
+        filename = cls.__name__ + ".csv"
+
+        if cls.__name__ == "Rectangle":
+            fields = ["id", "width", "height", "x", "y"]
+            with open(filename, "w") as file:
+                writer = csv.DictWriter(file, fieldnames=fields)
+                writer.writeheader()
+
+                obj_dictionaries = []
+                for obj in list_objs:
+                    obj_dict = obj.to_dictionary()
+                    obj_dictionaries.append(obj_dict)
+                for obj in obj_dictionaries:
+                    writer.writerow(obj)
+
+        elif cls.__name__ == "Square":
+            fields = ["id", "size", "x", "y"]
+            with open(filename, "w", newline='') as file:
+                writer = csv.DictWriter(file, fieldnames=fields)
+                writer.writeheader()
+
+                obj_dictionaries = []
+                for obj in list_objs:
+                    obj_dict = obj.to_dictionary()
+                    obj_dictionaries.append(obj_dict)
+                for obj in obj_dictionaries:
+                    writer.writerow(obj)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        Reads from a CSV file
+        """
+
+        filename = cls.__name__ + ".csv"
+
+        path_to_file = Path(filename)
+
+        if not path_to_file.exists():
+            return []
+
+        list_instances = []
+        with open(filename, "r") as file:
+            csv_reader = csv.DictReader(file)
+
+            for row in csv_reader:
+                if len(row) == 5:
+                    list_instances.append("[{}] ({}) {}/{} - {}/{}".format(
+                        "Rectangle",
+                        row["id"],
+                        row["x"],
+                        row["y"],
+                        row["width"],
+                        row["height"]
+                    ))
+                elif len(row) == 4:
+                    list_instances.append("[{}] ({}) {}/{} - {}".format(
+                        "Square",
+                        row["id"],
+                        row["x"],
+                        row["y"],
+                        row["size"],
+                    ))
+        return list_instances
