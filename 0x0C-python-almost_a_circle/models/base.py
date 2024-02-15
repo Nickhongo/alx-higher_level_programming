@@ -53,3 +53,16 @@ class Base:
             json_string = cls.to_json_string(
                     [obj.to_dictionary()for obj in list_objs])
             file.write(json_string)
+
+    @classmethod
+    def create(cls, **dictionary):
+        """Create an instance with all attributes"""
+        if cls.__name__ == "Rectangle":
+            dummy = cls(1, 1)
+        elif cls.__name__ == "Square":
+            dummy = cls(1)
+        else:
+            raise TypeError("create method is not defined for this class")
+
+        dummy.update(**dictionary)
+        return dummy
