@@ -3,6 +3,7 @@
 import json
 import csv
 from pathlib import Path
+import turtle
 """Base class"""
 
 
@@ -173,3 +174,47 @@ class Base:
                         row["size"],
                     ))
         return list_instances
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Draw rectangles and squares using Turtle graphics module"""
+
+        screen = turtle.Screen()
+        t = turtle.Turtle()
+        t.speed(1)
+
+        for rect in list_rectangles:
+            dictionary = rect.to_dictionary()
+            x = dictionary["x"]
+            y = dictionary["y"]
+            width = dictionary["width"]
+            height = dictionary["height"]
+
+            t.penup()
+            t.goto(x, y)
+            t.pendown()
+            t.color("blue")
+            t.begin_fill()
+            t.forward(width)
+            t.right(90)
+            t.forward(height)
+            t.right(90)
+            t.end_fill()
+
+        for square in list_squares:
+            dictionary = square.to_dictionary()
+            x = dictionary["x"]
+            y = dictionary["y"]
+            size = dictionary["size"]
+
+            t.penup()
+            t.goto(x, y)
+            t.pendown()
+            t.color("red")
+            t.begin_fill()
+            for _ in range(4):
+                t.forward(square.size)
+                t.right(90)
+            t.end_fill()
+
+        screen.exitonclick()
