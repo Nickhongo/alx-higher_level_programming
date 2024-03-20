@@ -1,2 +1,2 @@
--- Lists the number of records with the same number of scores
-SELECT score, COUNT(*) AS number FROM second_table GROUP BY score ORDER BY score DESC;
+-- Lists all records in a table where score >= 10
+SELECT score, name FROM second_table WHERE name IS NOT NULL ORDER BY score DESC;
