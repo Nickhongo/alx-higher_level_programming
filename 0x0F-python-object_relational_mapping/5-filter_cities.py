@@ -7,7 +7,8 @@ import MySQLdb
 
 if __name__ == "__main__":
     if len(sys.argv) != 5:
-        print("Usage: {} username password database state_name".format(sys.argv[0]))
+        print("Usage: {} username password database
+                state_name".format(sys.argv[0]))
         sys.exit(1)
 
     username = sys.argv[1]
@@ -24,7 +25,8 @@ if __name__ == "__main__":
 
         cursor = db.cursor()
 
-        cursor.execute("SELECT cities.id, cities.name, states.name FROM cities "
+        cursor.execute("SELECT cities.id, cities.name,
+                states.name FROM cities "
                        "JOIN states ON cities.state_id = states.id "
                        "WHERE states.name = %s "
                        "ORDER BY cities.id", (state_name,))
